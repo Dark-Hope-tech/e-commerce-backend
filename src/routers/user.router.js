@@ -149,14 +149,20 @@ router.put(
   '/update',
   admin,
   handler(async (req, res) => {
-    const { id, name, email, address, isAdmin } = req.body;
-    await UserModel.findByIdAndUpdate(id, {
-      name,
-      email,
-      address,
-      isAdmin,
-    });
-
+    const { id, name, email, address,password, isAdmin } = req.body;
+    if(!id || !name || !email || !address || !password){
+      res.status(BAD_REQUEST).send('Please fill all fields');
+    }
+    const user = await UserModel.findById(id);
+    if(!user){
+      res.status(BAD_REQUEST).send('User not found');
+    }
+    user.name = name;
+    user.email = email;
+    user.address = address;
+    user.password = await bcrypt.hash(password, PASSWORD_HASH_SALT_ROUNDS);
+    user.isAdmin = isAdmin;
+    await user.save();
     res.status(200).send({isSuccess:true});
   })
 );
