@@ -24,14 +24,15 @@ app.use(express.json());
 //   })
 // );
 app.use(cors());
-app.use('/api',(req,res)=>{
-  res.send('server is running');
-});
+
 app.use('/api/foods', foodRouter);
 app.use('/api/users', userRouter);
 app.use('/api/orders', orderRouter);
 app.use('/api/upload', uploadRouter);
 
+app.use('/',(req,res)=>{
+  res.send('server is running');
+})
 // const publicFolder = path.join(__dirname, 'public');
 // app.use(express.static(publicFolder));
 
