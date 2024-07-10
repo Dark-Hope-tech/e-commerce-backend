@@ -10,7 +10,7 @@ env.config();
 const PASSWORD_HASH_SALT_ROUNDS = 10;
 set('strictQuery', true);
 
-const MONGO_URI = process.env.MONGO_URI;
+const MONGO_URI = "mongodb+srv://tabish:tabish1382000@cluster-qamarbhai.wprudg1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster-qamarBhai";
 console.log(MONGO_URI);
 export const dbconnect = async () => {
   try {
