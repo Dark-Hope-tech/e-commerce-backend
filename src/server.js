@@ -24,9 +24,9 @@ app.use(express.json());
 //   })
 // );
 app.use(cors());
-app.use('/',(req,res)=>{
-  res.send('server is running');
-});
+// app.use('/',(req,res)=>{
+//   res.send('server is running');
+// });
 app.use('/api/foods', foodRouter);
 app.use('/api/users', userRouter);
 app.use('/api/orders', orderRouter);
