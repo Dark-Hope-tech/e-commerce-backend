@@ -4,10 +4,14 @@ import { FoodModel } from '../models/food.model.js';
 import { sample_users } from '../data.js';
 import { sample_foods } from '../data.js';
 import bcrypt from 'bcryptjs';
+import env from 'dotenv';
+
+env.config();
 const PASSWORD_HASH_SALT_ROUNDS = 10;
 set('strictQuery', true);
 
-const MONGO_URI = "mongodb+srv://tinkumalik84:eu9HHTyWBZdyizjd@cluster-qamarbhai.wprudg1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster-qamarBhai";
+const MONGO_URI = process.env.MONGO_URI;
+console.log(MONGO_URI);
 export const dbconnect = async () => {
   try {
     connect(MONGO_URI, {
